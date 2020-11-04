@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="logins"
+            type="id.putraprima.mvvmlogin.viewmodels.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background"
         tools:context=".fragments.LoginFragment">
 
 
@@ -21,6 +24,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="32dp"
             android:text="Login"
+            android:onClick="@{()->logins.doLogin()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -34,6 +38,9 @@
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
+            android:text="@={logins.login.email}"
+            app:error="@{logins.errorUsername}"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -45,6 +52,9 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
+            android:text="@={logins.login.password}"
+            app:error="@{logins.errorPass}"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
