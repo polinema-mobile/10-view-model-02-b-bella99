@@ -28,4 +28,7 @@
         android:name="id.putraprima.mvvmlogin.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <action
+        android:id="@+id/action_loginFragment_to_homeFragment"
+        app:destination="@id/homeFragment" />
 </navigation>
