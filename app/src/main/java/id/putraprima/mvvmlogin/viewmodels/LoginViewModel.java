@@ -51,33 +51,35 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void doLogin(){
-        Log.d("Email",loginModel.email.toString());
-        Log.d("Pass",loginModel.password.toString());
+        Log.d("Email",loginModel.email);
+        Log.d("Pass",loginModel.password);
         loggedMutableLive.setValue(false);
 
         if (loginModel.email.equals(email) && loginModel.password.equals(password)){
             loginModelMutableLiveData.setValue(loginModel);
             loggedMutableLive.setValue(true);
-            Bundle b = new Bundle();
-            b.putString("email", loginModel.email);
-            bundleMutableLiveData.setValue(b);
             return;
         } else if(loginModel.isEmailValid()){
             errorEmail.setValue("Masukkan alamat email dengan benar"); // set pesan error
+            loggedMutableLive.setValue(false);
             return;
         } else if (loginModel.email.isEmpty() && loginModel.password.isEmpty()){
             errorEmail.setValue("Masukkan alamat email Anda"); // set pesan
             errorPassword.setValue("Masukkan password Anda"); // set pesan
+            loggedMutableLive.setValue(false);
             return;
         } else if (loginModel.email.equals(email) && loginModel.password.isEmpty() || loginModel.password == null){
             errorPassword.setValue("Masukkan password Anda");
+            loggedMutableLive.setValue(false);
             return;
         } else if (loginModel.email.isEmpty() || loginModel.email == null && loginModel.password.equals(password)){
             errorEmail.setValue("Masukkan alamat email Anda");
+            loggedMutableLive.setValue(false);
             return;
         } else if (!loginModel.email.equals(email) && !loginModel.password.equals(password)){
             errorEmail.setValue("Masukkan alamat email Anda dengan benar");
             errorPassword.setValue("Masukkan password Anda dengan benar");
+            loggedMutableLive.setValue(false);
             return;
         }
 
