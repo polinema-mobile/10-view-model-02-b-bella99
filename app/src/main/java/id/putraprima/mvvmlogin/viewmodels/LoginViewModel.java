@@ -68,7 +68,7 @@ public class LoginViewModel extends ViewModel {
             errorPassword.setValue("Masukkan password Anda"); // set pesan
             loggedMutableLive.setValue(false);
             return;
-        } else if (loginModel.email.equals(email) && loginModel.password.isEmpty() || loginModel.password == null){
+        } else if (loginModel.email.equals(email) && loginModel.password.isEmpty() || loginModel.password == null || !loginModel.password.equals(password)){
             errorPassword.setValue("Masukkan password Anda");
             loggedMutableLive.setValue(false);
             return;
@@ -76,7 +76,7 @@ public class LoginViewModel extends ViewModel {
             errorEmail.setValue("Masukkan alamat email Anda");
             loggedMutableLive.setValue(false);
             return;
-        } else if (!loginModel.email.equals(email) && !loginModel.password.equals(password)){
+        } else if (!loginModel.email.equals(email) || !loginModel.password.equals(password)){
             errorEmail.setValue("Masukkan alamat email Anda dengan benar");
             errorPassword.setValue("Masukkan password Anda dengan benar");
             loggedMutableLive.setValue(false);

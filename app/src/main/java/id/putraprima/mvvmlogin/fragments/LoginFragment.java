@@ -49,8 +49,10 @@ public class LoginFragment extends Fragment {
         loginViewModel.loggedLiveData().observe(this.getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                b.putString("email", loginViewModel.getLogin().getValue().email);
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment,b);
+                if (loginViewModel.loggedLiveData().getValue() == true){
+                    b.putString("email", loginViewModel.getLogin().getValue().email);
+                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment,b);
+                }
             }
         });
     }
